@@ -17,12 +17,12 @@ type LotteryController struct {
 
 var lotteryResult *models.LotteryResult
 
-func (c *LotteryController) Get() {
-	getLotteryLevel()
-
-	c.Data["Email"] = "zhangmi@sobey.com"
-	c.TplName = "index.tpl"
-
+func (this *LotteryController) Get() {
+	prize := getLotteryLevel()
+	this.Data["json"] = map[string]interface{}{"prize": prize}
+	this.ServeJSON()
+	//c.Data["Email"] = "zhangmi@sobey.com"
+	//c.TplName = "index.tpl"
 }
 
 func getLotteryLevel() int {
